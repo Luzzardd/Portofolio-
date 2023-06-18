@@ -77,11 +77,14 @@
         </div>
         <!-- Section-->
 
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
+        <section class="py-4">
+            <div class="container px-4 px-lg-5 ">
+                <div class="navbar-brand fw-bolder fs-1">
+                    Product
+                </div>
                 <form action="{{ route('landing') }}" method="GET">
                     @csrf
-                    <div class="row g-3 my-5">
+                    <div class="row g-3 my-3">
                         <div class="col-sm-3">
                             <input type="text" class="form-control" placeholder="Min" name="min" value="{{ old('min') }}">
                         </div>
@@ -93,9 +96,7 @@
                         </div>
                     </div>
                 </form>
-                <div class="navbar-brand fw-bolder fs-1">
-                    Product
-                </div>
+
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     @foreach ( $products as $produk )
                     <div class="col mb-5">
