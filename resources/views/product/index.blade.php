@@ -31,7 +31,7 @@
                                     <td>{{$produk->price}}</td>
                                     <td>{{$produk->sale_price}}</td>
                                     <td>{{$produk->brands}}</td>
-                                    <td><img src="{{asset('data/product/'.$produk->image)}}" width="50px" height="50px" alt="{{$produk->image}}"></td>
+                                    <td><img src="{{asset('storage/product/'.$produk->image)}}" width="50px" height="50px" alt="{{$produk->image}}"></td>
                                     <td>
                                         <form action="{{route('product.delete',$produk->id)}}" method="POST">
                                             <a href="{{route('product.edit',$produk->id)}}" class="btn btn-sm btn-warning">Edit</a>
