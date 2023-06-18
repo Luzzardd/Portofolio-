@@ -18,7 +18,7 @@ class LandingController extends Controller
     if ($request->category) {
             $products = Product::with('category')->whereHas('category', function ($query) use ($request) {
                 $query->where('name', $request->category);
-            })->get();
+            })->limit(8)->get();
     }else if ($request->min && $request->max) {
         $products = Product::where('price', '>=', $request->min)->where('price', '<=', $request->max)->get();
     }
