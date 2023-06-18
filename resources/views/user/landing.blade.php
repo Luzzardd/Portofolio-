@@ -13,23 +13,22 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{asset('css/landing.css')}}" rel="stylesheet" />
     </head>
-    <body style="background-color:#F4DFBA ">
+    <body style="background-color: #F4DFBA ">
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #876546; ">
+        <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #331f19; ">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#!">Start Bootstrap</a>
+                <a class="navbar-brand fw-bolder" href="#!">SapiQ</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{route('dashboard')}}">Home</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                <li><a class="dropdown-item" href="{{route('dashboard')}}">All Products</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 @foreach ($category as $kategori )
-                                <li><a class="dropdown-item" href="#">{{$kategori->name}}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('dashboard', ['category' => $kategori->name]) }}">{{$kategori->name}}</a></li>
                                 @endforeach
                             </ul>
                         </li>
@@ -42,7 +41,7 @@
                         </button>
                         <div class="dropdown ms-1 ">
                             <a class="btn btn-outline-light text-uppercase dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi-person-fill me-1"></i> {{ Auth::user()->name }}
+                            <i class="bi-person-fill me-1">{{ Auth::user()->name }}</i>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li>
@@ -84,6 +83,21 @@
         </div>
         <!-- Section-->
         <section class="py-5">
+                <div class="container px-4 px-lg-5 mt-5">
+                    <form action="{{ route('landing') }}" method="GET">
+                        @csrf
+                        <div class="row g-3 my-5">
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" placeholder="Min" name="min" value="{{ old('min') }}">
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" placeholder="Max" name="max" value={{ old('max') }}>
+                            </div>
+                            <div class="col-sm-3">
+                                <button type="submit" class="btn" style="background-color: #EEC373 ">Terapkan</button>
+                            </div>
+                        </div>
+                    </form>
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     @foreach ( $products as $produk )
@@ -95,6 +109,8 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
+                                    <a href="{{ route('product.show', ['id' => $produk->id]) }}" style="text-decoration: none" class="text-dark">
+                                    <small class="text-strong">{{ $produk->category->name }}</small>
                                     <h5 class="fw-bolder">{{$produk->name}}</h5>
                                     <!-- Product price-->
                                     @if ($produk['sale_price'] != 0)
@@ -107,7 +123,11 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{ route('product.show', ['id' => $produk->id]) }}" style="text-decoration: none" class="text-dark">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                        Pesan Disini
+                                    </a>
+                                </a></div>
                             </div>
                         </div>
                     </div>
@@ -117,12 +137,12 @@
             </div>
         </section>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
+        <footer class="py-5 " style="background-color: #331f19">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="{{asset('js/scripts.js')}}"></script>
     </body>
 </html>

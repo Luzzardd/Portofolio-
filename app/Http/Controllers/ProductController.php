@@ -16,6 +16,20 @@ class ProductController extends Controller
         return view('product.index',compact('product'));
 
     }
+
+    public function show($id)
+    {
+        $product = Product::where('id', $id)->with('category')->first();
+
+        $related = Product::where('category_id', $product->category->id)->where('id','!=',$id)->inRandomOrder()->limit(4)->get();
+
+        if ($product) {
+            return view('product.show', compact('product', 'related'));
+        } else {
+            abort(404);
+        }
+
+    }
     public function create()
     {
         $category = Category::all();
@@ -34,8 +48,8 @@ class ProductController extends Controller
             'sale_price'=>$request->sale_price,
             'brands'=>$request->brand,
             'image'=>$imagename,
-            'rating'=>$request->rating,
-
+            'rating'=>'5',
+            'description'=>$request->description,
 
         ]);
         return redirect()->route('product');
@@ -55,11 +69,11 @@ class ProductController extends Controller
     }
     public function update(request $request,$id)
     {
+        if ($request->hasFile('image')) {
         $old_image = Product::find($id)->image;
 
             Storage::delete('public/product/'.$old_image);
         $imagename = time().'.'.$request->image->extension();
-
         Storage::putFileAs('public/product ', $request->file('image'), $imagename);
         $product = Product::where('id',$id)->update([
             'category_id' =>$request->category,
@@ -68,12 +82,23 @@ class ProductController extends Controller
             'sale_price'=>$request->sale_price,
             'brands'=>$request->brand,
             'image'=>$imagename,
+            'description'=>$request->description,
             'rating'=>'5',
 
 
         ]);
-        return redirect()->route('product');
-    }
+    }else{
+        $product = Product::where('id',$id)->update([
+            'category_id' =>$request->category,
+            'name'=>$request->name,
+            'price'=>$request->price,
+            'sale_price'=>$request->sale_price,
+            'brands'=>$request->brand,
+            'description'=>$request->description,
+            'rating'=>'5', ]);
+
+    }   return redirect()->route('product');
+}
 
 
 }

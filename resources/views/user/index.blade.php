@@ -3,7 +3,7 @@
 @section('konten')
 <main>
     <div class="container-fluid px-4">
-        <h1 class="my-4">Product</h1>
+        <h1 class="my-4">User</h1>
 
         <a class="btn btn-primary mb-2" href="{{route('user.create')}}" role="button">Create New</a>
 

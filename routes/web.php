@@ -27,6 +27,9 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
+
+
 Route::get('/register',[RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 Route::middleware('auth')->group(function() {
@@ -64,6 +67,8 @@ Route::post('/product', [ProductController::class, 'store'])->name('product.stor
 Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::delete('/product/{id}', [ProductController::class, 'delete'])->name('product.delete');
 Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
+
+Route::get('/product/show/{id}', [ProductController::class, 'show'])->name('product.show');
 
 
 Route::get('/user', [UserController::class, 'index'])->name('user');

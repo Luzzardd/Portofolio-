@@ -39,6 +39,12 @@
 
                         </div>
                         <div class="mb-3">
+                            <label for="description" class="form-label">Description</label> <br>
+                            <textarea name="description" class="form-control " id="description" cols="214" rows="10"></textarea>
+
+                        </div>
+
+                        <div class="mb-3">
                             <label for="brand" class="form-label">Brand</label>
                             <select class="form-select " aria-label="brand" id="brand" name="brand">
                                 <option selected disabled>- Choose Brand -</option>
@@ -54,12 +60,6 @@
                             <input class="form-control " type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
 
                         </div>
-                        <div class="mb-3">
-                            <label for="rating" class="form-label">rating</label>
-                            <input class="form-control " type="number" name="rating" id="rating" >
-
-                        </div>
-
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <a href="" class="btn btn-secondary">Cancel</a>
                     </form>

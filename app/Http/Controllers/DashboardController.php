@@ -10,12 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $sliders= Slider::all();
         $products= Product::all();
         $category = Category::all();
         $auth=Auth::user()->role->name;
+
+    if ($request->category) {
+            $products = Product::with('category')->whereHas('category', function ($query) use ($request) {
+                $query->where('name', $request->category);
+            })->get();
+    }else if ($request->min && $request->max) {
+        $products = Product::where('price', '>=', $request->min)->where('price', '<=', $request->max)->get();
+    }
+
+
         if(
             $auth=='User'
         ){

@@ -3,7 +3,7 @@
 @section('konten')
     <main>
         <div class="container-fluid px-4">
-            <h1 class="my-4">Create Product</h1>
+            <h1 class="my-4">Edit Product</h1>
 
             <div class="card mb-4">
                 <div class="card-body">
@@ -40,6 +40,12 @@
 
                         </div>
                         <div class="mb-3">
+                            <label for="description" class="form-label">Description</label> <br>
+                            <textarea name="description" class="form-control " id="description" cols="214" rows="10">{{$product->description}}</textarea>
+
+                        </div>
+
+                        <div class="mb-3">
                             <label for="brand" class="form-label">Brand</label>
                             <select class="form-select " aria-label="brand" id="brand" name="brand">
                                 <option selected disabled>- Choose Brand -</option>
@@ -56,7 +62,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="" class="btn btn-secondary">Cancel</a>
+                        <a href="{{route('product')}}" class="btn btn-secondary">Cancel</a>
                     </form>
                 </div>
             </div>

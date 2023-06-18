@@ -9,13 +9,22 @@ use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $sliders= Slider::all();
         $products= Product::all();
         $category = Category::all();
-        return view('landing',compact('sliders','products','category'));
+
+    if ($request->category) {
+            $products = Product::with('category')->whereHas('category', function ($query) use ($request) {
+                $query->where('name', $request->category);
+            })->get();
+    }else if ($request->min && $request->max) {
+        $products = Product::where('price', '>=', $request->min)->where('price', '<=', $request->max)->get();
+    }
+    return view('landing',compact('sliders','products','category',));
 
     }
 
 }
+

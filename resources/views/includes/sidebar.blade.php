@@ -1,4 +1,4 @@
-<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+<nav  class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion"  style="background-color: #492b23">
     <div class="sb-sidenav-menu">
         <div class="nav">
             <div class="sb-sidenav-menu-heading">Core</div>
@@ -8,7 +8,7 @@
             </a>
             <div class="sb-sidenav-menu-heading">Content</div>
             <a class="nav-link" href="{{route('slider')}}">
-                <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
+                <div class="sb-nav-link-icon"><i class="fas fa-image" ></i></div>
                 Slider
             </a>
             <div class="sb-sidenav-menu-heading">Interface</div>
@@ -38,8 +38,8 @@
 
         </div>
     </div>
-    <div class="sb-sidenav-footer">
-        <div class="small">Logged in as:</div>
+    <div  class="sb-sidenav-footer"  style="background-color: #331f19">
+        <div class="small" >Logged in as:</div>
         {{Auth::user()->name }}
         ({{{Auth::user()->role->name}}})
     </div>
