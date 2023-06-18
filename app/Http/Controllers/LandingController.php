@@ -12,7 +12,7 @@ class LandingController extends Controller
     public function index(Request $request)
     {
         $sliders= Slider::all();
-        $products= Product::all();
+        $products= Product::all()->limit(8);
         $category = Category::all();
 
     if ($request->category) {
