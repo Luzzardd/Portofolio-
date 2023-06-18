@@ -93,6 +93,9 @@
                         </div>
                     </div>
                 </form>
+                <div class="navbar-brand fw-bolder fs-1">
+                    Product
+                </div>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     @foreach ( $products as $produk )
                     <div class="col mb-5">
